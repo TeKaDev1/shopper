@@ -6,8 +6,9 @@ export interface Product {
   price: number;
   images: string[];
   category: string;
-  videos?: string[]; // Optional array of video URLs
+  videos?: string[]; // Already included
 }
+ 
 
 export interface Order {
   id: string;

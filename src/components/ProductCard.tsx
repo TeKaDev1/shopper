@@ -7,9 +7,10 @@ import { Product } from '@/lib/data';
 interface ProductCardProps {
   product: Product;
   index: number;
+  showVideo?: boolean; // New prop to control video rendering
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, index, showVideo = false }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
           />
         </div>
         
-        {product.videos && product.videos.length > 0 && (
+        {showVideo && product.videos && product.videos.length > 0 && (
           <div className="aspect-video overflow-hidden mt-2">
             <video controls className="w-full h-full">
               <source src={product.videos[0]} type="video/mp4" />

@@ -75,6 +75,7 @@ const AdminDashboard: React.FC = () => {
         description: '',
         price: 0,
         images: ['', '', ''],
+        videos: ['', '', ''], // Initialize video field
         category: ''
       }
     );
@@ -88,6 +89,12 @@ const AdminDashboard: React.FC = () => {
       const updatedImages = [...(formData.images || [])];
       updatedImages[index] = value;
       setFormData({ ...formData, images: updatedImages });
+    };
+
+    const handleVideoChange = (index: number, value: string) => {
+      const updatedVideos = [...(formData.videos || [])];
+      updatedVideos[index] = value;
+      setFormData({ ...formData, videos: updatedVideos });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -200,6 +207,22 @@ const AdminDashboard: React.FC = () => {
                       placeholder={index === 0 ? "رابط الصورة الرئيسية (مطلوب)" : `رابط الصورة ${index + 1} (اختياري)`}
                       value={formData.images?.[index] || ''}
                       onChange={(e) => handleImageChange(index, e.target.value)}
+                      className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">روابط الفيديوهات (اختياري)</label>
+                <div className="space-y-2">
+                  {[0, 1, 2].map((index) => (
+                    <input
+                      key={`video-${index}`}
+                      type="url"
+                      placeholder={`رابط الفيديو ${index + 1} (اختياري)`}
+                      value={formData.videos?.[index] || ''}
+                      onChange={(e) => handleVideoChange(index, e.target.value)}
                       className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   ))}
